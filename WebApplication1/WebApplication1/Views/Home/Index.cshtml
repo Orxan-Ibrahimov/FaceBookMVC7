@@ -1,0 +1,40 @@
+﻿@model Info
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+         @*    <p class="alert alert-danger">
+                 @ViewBag.Name @ViewBag.Surname: @ViewBag.Phone             
+            </p> *@
+            @if (Model != null)
+            {
+                <p class="alert alert-danger">
+                    @Model.Name @Model.Surname : @Model.Phone
+                </p>
+            }
+        </div>
+        <div class="col-6 offset-3 my-4">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Name</label>
+                    <input asp-for="Name" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Surname" class="form-label">Surname</label>
+                    <input asp-for="Surname" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Phone" class="form-label">Phone</label>
+                    <input asp-for="Phone" type="text" class="form-control" id="exampleInputPassword1">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>               
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
