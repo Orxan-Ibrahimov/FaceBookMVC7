@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Metrics;
 
 namespace Library.Controllers
 {
@@ -61,16 +62,26 @@ namespace Library.Controllers
         // GET: CountryController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Country country = _context.Countries.Find(id);
+
+            if (country == null) return View();
+
+            return View(country);
         }
 
         // POST: CountryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Country country)
         {
             try
             {
+                if (_context.Countries.Contains(country))
+                {
+                    _context.Countries.Update(country);
+                    _context.SaveChanges();
+                }           
+                
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -82,16 +93,26 @@ namespace Library.Controllers
         // GET: CountryController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            Country country = _context.Countries.Find(id);
+
+            if (country == null) return View();
+
+            return View(country);
         }
 
         // POST: CountryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int id, Country country)
         {
             try
             {
+                if (_context.Countries.Contains(country))
+                {
+                    _context.Countries.Remove(country);
+                    _context.SaveChanges();
+                }
+
                 return RedirectToAction(nameof(Index));
             }
             catch
