@@ -1,0 +1,42 @@
+﻿@model AuthorVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Author</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Author.Name" class="control-label"></label>
+                <input asp-for="Author.Name" class="form-control" />
+                <span asp-validation-for="Author.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author.Surname" class="control-label"></label>
+                <input asp-for="Author.Surname" class="form-control" />
+                <span asp-validation-for="Author.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author.Nickname" class="control-label"></label>
+                <input asp-for="Author.Nickname" class="form-control" />
+                <span asp-validation-for="Author.Nickname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author.CountryId" class="control-label"></label>
+                <select asp-for="Author.CountryId" class="form-control" asp-items="Model.CountryList"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+                <a asp-action="Index" class="btn btn-outline-info">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
