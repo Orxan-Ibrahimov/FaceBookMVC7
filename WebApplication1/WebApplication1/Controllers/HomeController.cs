@@ -32,11 +32,39 @@ namespace WebApplication1.Controllers
         {
             if (ModelState.IsValid)
             {
+
                 return View(model);
             }
 
             return View();
            
         }
+
+        public IActionResult First()
+        {
+           
+            if(Request.Method == "POST")
+            {
+                object name = Request.Form["name"];
+                if (string.IsNullOrEmpty(name.ToString()) )
+                {
+                   bool check = Request.RouteValues.TryGetValue("name", out name);
+                 if (!check) 
+                    {
+                       name = Request.Query["name"];
+                    }
+                }
+                return View(name);
+            }
+
+            return View();
+
+        }
+
+        public IActionResult Second() 
+        {
+            return View();
+        }
+
     }
 }

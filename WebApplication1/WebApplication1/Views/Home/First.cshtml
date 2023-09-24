@@ -1,0 +1,18 @@
+﻿@model object;
+@{
+    ViewData["Title"] = "First";
+}
+
+<div class="container">
+    <div class="row">
+       <p class="col-12">@Model</p>
+        <div class="col-6 offset-3 my-4">
+            <form method="post" asp-route-name="orxan">
+                <div class="mb-3">
+                    <input name="Name1" type="text" class="form-control">
+                </div>              
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
